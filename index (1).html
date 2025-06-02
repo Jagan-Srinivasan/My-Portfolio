@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JAGAN | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      background: #161a23;
+      color: #e5e7ef;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+    header {
+      background: #222533;
+      border-bottom: 1px solid #222533;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+    }
+    .nav-bar {
+      max-width: 100vw;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2vw;
+      box-sizing: border-box;
+    }
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      color: #7dabfa;
+    }
+    nav ul {
+      display: flex;
+      gap: 1.1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #e5e7ef;
+      font-weight: 500;
+      padding: 0.2em 0.7em;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1em;
+    }
+    nav ul li a.active,
+    nav ul li a:hover {
+      background: #27304a;
+      color: #7dabfa;
+    }
+    .nav-toggle {
+      display: none;
+    }
+
+    /* BANNER FIX */
+    .portfolio-banner {
+      width: 100%;
+      max-width: 1200px;
+      height: 220px;
+      margin: 30px auto 40px auto;
+      border-radius: 32px;
+      box-shadow: 0 6px 32px 0 rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      background: linear-gradient(120deg, #3a466c 60%, #7dabfa 100%);
+    }
+    .portfolio-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      filter: blur(0px) brightness(0.88) saturate(1.05);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      display: block;
+    }
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      padding: 2.5rem 3rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      background: linear-gradient(90deg,rgba(36,38,60,0.73) 65%,rgba(125,171,250,0.17) 100%);
+      border-radius: 18px 0 0 0;
+      max-width: 75%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 900px) {
+      .portfolio-banner { height: 130px; border-radius: 18px; }
+      .banner-content { font-size: 1.3rem; padding: 1.5rem 1rem;}
+    }
+    @media (max-width: 600px) {
+      .portfolio-banner { height: 75px; border-radius: 9px; }
+      .banner-content { font-size: 0.93rem; padding: 0.7rem 0.4rem; max-width: 95%;}
+    }
+    main {
+      width: 100vw;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    section {
+      width: 100vw;
+      margin: 0;
+      background: #23253a;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 2.5rem 8vw;
+      box-sizing: border-box;
+      border-bottom: 1px solid #1a1e2d;
+    }
+    /* About section */
+    #about {
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: #1a1e2d;
+      box-shadow: none;
+      padding: 0 8vw 2.5rem 8vw;
+      border-bottom: 1px solid #23253a;
+    }
+    .about-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 110px;
+      margin-bottom: 1.8em;
+      gap: 3em;
+      width: 100%;
+      max-width: 1100px;
+    }
+    .avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 10%;
+      border: 6px solid blue;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+      object-fit: cover;
+      background: #fff;
+      z-index: 2;
+      margin-bottom: 0;
+      margin-right: 0;
+      display: block;
+      flex-shrink: 0;
+      margin-top: -80px;
+    }
+    .about-name-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
+      min-width: 220px;
+      flex: 1;
+    }
+    .about-name-block h1 {
+      margin-top: 0;
+      margin-bottom: 0.4em;
+      font-size: 2.4em;
+      color: #fff;
+    }
+    .about-name-block p {
+      margin-top: 0;
+      margin-bottom: 1.2em;
+      font-size: 1.18em;
+      max-width: 700px;
+      color: #e5e7ef;
+    }
+    @media (max-width: 900px) {
+      .about-flex {
+        gap: 1.5em;
+        margin-top: 70px;
+      }
+      .avatar { width: 130px; height: 130px;}
+    }
+    @media (max-width: 700px) {
+      .about-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        margin-top: 40px;
+      }
+      .avatar { width: 110px; height: 110px;}
+      .about-name-block { align-items: center; text-align: center;}
+      .about-name-block p { font-size: 1em;}
+      .about-name-block h1 { font-size: 2em;}
+    }
+    @media (max-width: 480px) {
+      .about-flex { gap: 0.6em; }
+      .avatar { width: 80px; height: 80px;}
+    }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 0;
+      margin-bottom: 0.56em;
+    }
+    h2 {
+      font-size: 1.22em;
+      color: #7dabfa;
+      border-bottom: 1px solid #27304a;
+      padding-bottom: 0.4em;
+      margin-bottom: 1em;
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 1.07em;
+      color: #e5e7ef;
+      margin-bottom: 0.5em;
+      margin-top: 1em;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7em;
+      margin: 1rem 0 1.1rem 0;
+      justify-content: flex-start;
+    }
+    .about-name-block .badges {
+      justify-content: flex-start;
+    }
+    @media (max-width: 700px) {
+      .badges, .about-name-block .badges {
+        justify-content: center;
+      }
+    }
+    .badge {
+      background: #27304a;
+      color: #7dabfa;
+      font-size: 0.93em;
+      padding: 0.3em 0.8em;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+    .socials {
+      margin: 0.5em 0 1.2em 0;
+    }
+    .socials a {
+      color: #7dabfa;
+      font-size: 1.22em;
+      margin: 0 0.6em;
+      transition: color 0.2s;
+    }
+    .socials a:hover {
+      color: #fff;
+    }
+    .about-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .timeline li {
+      margin-bottom: 1.1em;
+      padding-left: 0.2em;
+      position: relative;
+    }
+    .timeline li strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .timeline li span {
+      color: #7dabfa;
+      font-size: 0.97em;
+      margin-left: 0.5em;
+      font-weight: 500;
+    }
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2vw;
+      justify-content: center;
+    }
+    .project-card {
+      background: #19203a;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 1em 1em 1.1em 1em;
+      width: 100%;
+      max-width: 280px;
+      min-width: 210px;
+      flex: 1 1 220px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .project-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 7px;
+      margin-bottom: 0.7em;
+    }
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 1em;
+    }
+    .project-links a {
+      color: #7dabfa;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 0.25em;
+      transition: color 0.2s;
+    }
+    .project-links a:hover {
+      color: #fff;
+    }
+    #contact {
+      text-align: center;
+      background: #1a1e2d;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 2rem 8vw;
+      border-bottom: none;
+    }
+    .contact-banner-wrap {
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+      padding: 0;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: row;
+      gap: 2.5em;
+      align-items: center;
+      font-size: 1.04em;
+      justify-content: center;
+      margin-top: 1.2em;
+      flex-wrap: wrap;
+    }
+    .contact-links a {
+      color: #7dabfa;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .contact-links a:hover {
+      color: #fff;
+    }
+    .contact-links i {
+      font-size: 1.2em;
+    }
+    @media (max-width: 900px) {
+      section, #about, #contact {
+        padding-left: 3vw;
+        padding-right: 3vw;
+      }
+    }
+    @media (max-width: 699px) {
+      .projects-container { flex-direction: column; gap: 1.3em; }
+      .contact-links { flex-direction: column; gap: 1em; }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <span class="brand">JAGAN<span style="color:#e5e7ef">|Portfolio</span></span>
+      <nav>
+        <ul id="navbar">
+          <li><a href="#about" class="active">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+    </div>
+  </header>
+  <main>
+    <section id="about">
+      <div class="about-content">
+        <div class="about-flex">
+          <img class="avatar" src="Jagan photo.jpg" alt="Jagan Srinivasan Avatar" width="200" height="200" />
+          <div class="about-name-block">
+            <h1>Jagan S</h1>
+            <p>
+              I'm an Electronics and Communication Engineering (ECE) student at RMK College of Engineering and Technology (Batch 2024–2028). Passionate about technology, innovation, and problem-solving, I enjoy exploring areas like embedded systems, IoT, and AI integration. This portfolio showcases my projects, skills, and learning journey as I work towards becoming a future-ready engineer.
+            </p>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-java"></i> Java</span>
+              <span class="badge"><i class="fab fa-python"></i> Python</span>
+              <span class="badge"><i class="fab fa-js-square"></i> JavaScript</span>
+              <span class="badge"><i class="fas fa-microchip"></i> IoT</span>
+              <span class="badge"><i class="fab fa-github"></i> Git/GitHub</span>
+            </div>
+            <div class="socials">
+              <a href="https://github.com/Jagan-Srinivasan" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://linkedin.com/in/jagan-srinivasan" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="mailto:jagan.srinivasan@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="timeline">
+        <li>
+          <strong>2024</strong><br>
+          Joined RMK College – ECE<br>
+          <span>– Began exploring electronics and coding</span>
+        </li>
+        <li>
+          <strong>2025</strong><br>
+          Working on IoT and embedded projects<br>
+          <span>– Learning Python, C/C++, microcontrollers</span>
+        </li>
+        <li>
+          <strong>2026</strong><br>
+          Expected internship in IoT/core electronics<br>
+          <span>– Exploring research and AI integration</span>
+        </li>
+        <li>
+          <strong>2027</strong><br>
+          Planning major real-time/automation project<br>
+          <span>– Targeting internships and certifications</span>
+        </li>
+        <li>
+          <strong>2028</strong><br>
+          Graduating B.E. – ECE<br>
+          <span>– Aiming for tech career or higher studies</span>
+        </li>
+      </ul>
+
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <img src="project.png" alt="Fire Detection" />
+          <h3>Fire Detection System</h3>
+          <p>IoT + AI system for real-time fire detection. Alerts via cloud/app, live dashboard.</p>
+          <div class="project-links">
+            <a href="https://github.com/Jagan-Srinivasan" target="_blank"><i class="fab fa-github"></i> Code</a>
+            <a href="" target="_blank"><i class="fas fa-video"></i> Demo</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="dash.png" alt="Air Quality Monitor" />
+          <h3>Air Quality Monitoring</h3>
+          <p>Smart pollution detection with NodeMCU, sensors & dashboard. Real-time metrics, alerts.</p>
+          <div class="project-links">
+            <a href="https://github.com/Jagan-Srinivasan" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="port.png" alt="Portfolio Website" />
+          <h3>Portfolio Website</h3>
+          <p>Modern, responsive portfolio site. Built with HTML, CSS, JS. Open source!</p>
+          <div class="project-links">
+            <a href="https://github.com/Jagan-Srinivasan" target="_blank"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="contact-banner-wrap">
+        <div class="portfolio-banner" style="margin-bottom:2.5rem;">
+          <img src="C.png" alt="Banner" />
+        </div>
+      </div>
+      <h2>Contact</h2>
+      <div class="contact-links">
+        <a href="mailto:jaganrmkcet@gmail.com"><i class="fas fa-envelope"></i> jaganrmkcet@gmail.com</a>
+        <a href="https://www.linkedin.com/in/jagan-s-04795b32a" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Jagan-Srinivasan" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Smooth scroll and nav highlight
+    const links = document.querySelectorAll('nav ul li a');
+    links.forEach(link => link.onclick = e => {
+      e.preventDefault();
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      document.getElementById(link.getAttribute('href').slice(1))
+        .scrollIntoView({behavior: 'smooth', block: 'start'});
+      navMenu.classList.remove('show');
+    });
+    window.onscroll = () => {
+      const fromTop = window.scrollY + 60;
+      links.forEach(link => {
+        const section = document.querySelector(link.hash);
+        if (section &&
+          section.offsetTop <= fromTop &&
+          section.offsetTop + section.offsetHeight > fromTop) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    };
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    navToggle.onclick = () => navMenu.classList.toggle('show');
+    document.addEventListener('click', e => {
+      if (window.innerWidth <= 600 && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navMenu.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
